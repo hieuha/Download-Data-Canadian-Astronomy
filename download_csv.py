@@ -63,6 +63,7 @@ class CanadianAstronomy():
         if username in res_cookie:
             self.username = username
             cookie = 'CADC_SSO="%s"' % res_cookie
+            self._write_file('cookie.txt', cookie)
             self.header['Cookie'] = cookie
             return True
         return False
