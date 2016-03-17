@@ -1,17 +1,15 @@
 # Download-Data-Canadian-Astronomy
 ## Libs
-pip install requests pandas   
+pip install requests pandas optparse    
 apt-get install parallel
 ## Usage
-```python
-    username = ''
-    password = ''
-    energy_value = '356700..356800MHz'
-    main(username, password, energy_value)
+```bash
+python download_csv.py -u username -p password -e "356700..356800MHz" -i "HARP-ACSIS" -c "JCMT"
 ```    
-1, $python download_csv.py    
-2, $chmod +x download_raw.sh    
-3, $./download_raw.sh    
+
+```bash
+./download_raw.sh
+```    
 
 # Starlink
 ## vim ~/.bashrc, insert two lines below.
