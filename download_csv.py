@@ -32,7 +32,7 @@ class CanadianAstronomy():
         html = res.read()
         url_location = res.geturl()
         return html, url_location
-    
+
     def _post_no303(self, url, data, header):
         r = requests.post(url, data, allow_redirects=False, headers = header)
         return r
@@ -53,7 +53,7 @@ class CanadianAstronomy():
         with open(filename, "w" ) as f:
             f.write(data)
             print 'Downloaded %s' % filename
-    
+
     #---------------------------------------------------------------------#
     def login(self, username, password):
         url_login = 'http://www.cadc-ccda.hia-iha.nrc-cnrc.gc.ca/ac/login'
@@ -85,7 +85,7 @@ class CanadianAstronomy():
         data = data.replace('AAAAAAA1', parameters['energy_value'])
         data = data.replace('AAAAAAA2', parameters['collection'])
         data = data.replace('AAAAAAA3', parameters['instrument_name'])
-                        
+
         r = self._post_no303(url_search, data, self.header)
         url_job = r.headers['Location']
         search_result_html, _ = self._get(url_job, self.header)
@@ -111,15 +111,12 @@ def group_resolving_power(x):
         return str(10000000)  
     return str(x['Resolving Power'])
 
-def main(username, password, energy_value):
+def main(username, password, parameters):
     ca = CanadianAstronomy()
     if ca.login(username, password):
-        ca.whoami()
-        parameters = {'energy_value': energy_value,
-                      'instrument_name': 'HARP-ACSIS',
-                      'collection': 'JCMT'}    
+        ca.whoami()        
         saved_file = ca.search(parameters)
-        
+
         # Processing CSV file downloaded
         data = pd.DataFrame.from_csv(saved_file)
         data['DOWNLOADABLE'] = ca.root_url + data['DOWNLOADABLE'].astype(str)        
@@ -136,10 +133,12 @@ def main(username, password, energy_value):
                 df.to_csv(f)
             with open(path_file + '.links' , 'w') as f2:
                 df['DOWNLOADABLE'].to_csv(f2, index=False)
-                
+
 if __name__ == "__main__":
     username = ''
     password = ''
-    energy_value = '356700..356800MHz'
-    main(username, password, energy_value)
-    
+    parameters = {'energy_value': "356700..356800MHz",
+                  'instrument_name': 'HARP-ACSIS',
+                  'collection': 'JCMT'}
+    main(username, password, energy_value, parameters)
+
