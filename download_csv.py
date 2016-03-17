@@ -140,5 +140,5 @@ if __name__ == "__main__":
     parameters = {'energy_value': "356700..356800MHz",
                   'instrument_name': 'HARP-ACSIS',
                   'collection': 'JCMT'}
-    main(username, password, energy_value, parameters)
+    main(username, password, parameters)
 
