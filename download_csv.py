@@ -59,7 +59,11 @@ class CanadianAstronomy():
         url_login = 'http://www.cadc-ccda.hia-iha.nrc-cnrc.gc.ca/ac/login'
         post_login = {'username': username,
                       'password': password}
-        res_cookie, _ = self._post(url_login, post_login, self.header)
+        try:            
+            res_cookie, _ = self._post(url_login, post_login, self.header)
+        except:
+            print 'Login failed, check your account again!'
+            res_cookie = ""
         if username in res_cookie:
             self.username = username
             cookie = 'CADC_SSO="%s"' % res_cookie
