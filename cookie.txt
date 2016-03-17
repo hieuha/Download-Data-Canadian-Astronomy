@@ -1,0 +1,1 @@
+CADC_SSO="userid=nguyenluongquang&expirytime=1458370548676&scope=sso:cadc+canfar&signature=aKBGVgFYXrTtAHkrQOkBUAqRtZ2hCWim8pWduGPqqmyfHzMCMp1kDS0jH5h9fN3mAq00vqg2FIWU8L74BUNP9hiF+PXJRS+lDq7FAMYL5vxzKALZCPJmN78dweyspHJipdiYk5jeGt1oce4eb3YlBPOxOuHjkl8VPhDy/oMxECY="
