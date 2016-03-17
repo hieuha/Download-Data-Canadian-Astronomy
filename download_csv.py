@@ -13,6 +13,7 @@ import csv
 import pandas as pd
 import requests
 import os
+import optparse
 
 class CanadianAstronomy():
     def __init__(self):
@@ -115,7 +116,39 @@ def group_resolving_power(x):
         return str(10000000)  
     return str(x['Resolving Power'])
 
-def main(username, password, parameters):
+def build_parser():
+    usage = """
+    usage: %prog -s 192.168.12.20 -p 6379 -w 20 -c 30 -a foobared -t 2000
+    -u: username
+    -p: password
+    -e: energy value, eg: "356700..356800MHz"
+    -i: instrument name, eg: HARP-ACSIS
+    -c: collection, eg: JCMT
+    """    
+    parser = optparse.OptionParser(usage= usage)
+    parser.add_option("-u", "--username", dest="username")
+    parser.add_option("-p", "--password", dest="password")
+    parser.add_option("-e", "--engery", dest="engery", default = "356700..356800MHz")
+    parser.add_option("-i", "--instrument", dest="instrument", default = "HARP-ACSIS")
+    parser.add_option("-c", "--collection", dest="collection", default="JCMT")
+    return parser
+
+def main():
+    parser = build_parser()
+    options, _args = parser.parse_args()
+    username = options.username
+    password = options.password
+    collection = options.collection
+    instrument = options.instrument
+    engery = options.engery
+    parameters = {'energy_value': engery,
+                  'instrument_name': instrument,
+                  'collection': collection}
+    if not options.username:
+        parser.error("Username is required")
+    if not options.password:
+        parser.error("Password is required")
+        
     ca = CanadianAstronomy()
     if ca.login(username, password):
         ca.whoami()        
@@ -139,10 +172,7 @@ def main(username, password, parameters):
                 df['DOWNLOADABLE'].to_csv(f2, index=False)
 
 if __name__ == "__main__":
-    username = ''
-    password = ''
-    parameters = {'energy_value': "356700..356800MHz",
-                  'instrument_name': 'HARP-ACSIS',
-                  'collection': 'JCMT'}
-    main(username, password, parameters)
+   
+        
+    main()
 

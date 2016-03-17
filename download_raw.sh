@@ -13,7 +13,7 @@ else
 		dir=`echo $dir|sed 's|\/||g'`
 		file_link="$dir/$dir.links"
 		if [ -f "$file_link" ]; then
-			download_command="/usr/bin/wget --content-disposition -P '$dir/' --load-cookies cookies.txt {}"
+			download_command="/usr/bin/wget --content-disposition -P '$dir/raw/' --load-cookies cookies.txt {}"
 			cat "$file_link" | /usr/bin/parallel --gnu "$download_command"
 		fi
 	done
