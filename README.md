@@ -1,8 +1,8 @@
-# Download-Data-Canadian-Astronomy
-## Libs
+# Download Data
+#### Libs
 pip install requests pandas optparse    
 apt-get install parallel
-## Usage
+#### Usage
 ```bash
 python download_csv.py -u username -p password -e "356700..356800MHz" -i "HARP-ACSIS" -c "JCMT"
 ```    
@@ -12,13 +12,13 @@ python download_csv.py -u username -p password -e "356700..356800MHz" -i "HARP-A
 ```    
 
 # Starlink
-## vim ~/.bashrc, insert two lines below.
+#### vim ~/.bashrc, insert two lines below.
 ```bash
-# Change starlink folder
+#### Change starlink folder
 export STARLINK_DIR=/hcm/Harry/Radio-Astronomy/Software/star-2015B
 source $STARLINK_DIR/etc/profile
 ```
-## Run red2.sh
+#### Run red2.sh
 Usage
 ```bash
 source  red2.sh  datadir mypar
