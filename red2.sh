@@ -93,8 +93,9 @@ echo ORAC_DATA_OUT=$ORAC_DATA_OUT
 
 # now we can run oracdr
 
-echo
 oracdr -loop file -files $MY_SERLIST REDUCE_SCIENCE_NARROWLINE -recpars $MY_PARINI -nodisplay -log s -batch
-echo
+echo "Delete Raw $MY_SERLIST"
+rm -rf "$MY_MOLECULAR/raw/"
+
 unset ORAC_DATA_IN
 unset ORAC_DATA_OUT
