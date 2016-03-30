@@ -118,7 +118,6 @@ def group_resolving_power(x):
 
 def build_parser():
     usage = """
-    usage: %prog -s 192.168.12.20 -p 6379 -w 20 -c 30 -a foobared -t 2000
     -u: username
     -p: password
     -e: energy value, eg: "356700..356800MHz"
